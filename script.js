@@ -40,11 +40,6 @@ reloadSearch(); <-- this can just feed the localStorage variables back in withou
 });
 
 
-
-
-
-
-
 //SEARCHED CITIES GENERATE AN ITEM DOWN IN THE SEARCH HISTORY COLUMN 
 function addToSearchHistory(search){
     //QUERY SELECTORS FOR HTML ELEMENTS...well, in the finished version this will actually be a createElement()...
@@ -67,12 +62,35 @@ function renderMainWeatherData(date, icon, temp, wind, humidity){
 
 //SEARCH HISTORY CITIES ARE CLICKABLE, ALLOWING A PERSON TO REACCESS THEIR WEATHER INFO
 
-
-
-
-
-
-
-
 */
 
+
+// === TEMPORARY NON-DYNAMIC  QUERY SELECTORS === 
+
+// === FETCHING BASE API OBJECT === 
+var baseURL = "https://api.openweathermap.org/data/2.5/forecast?lat=39.0997&lon=94.5786&units=imperial&appid=5277d07a84c698de9976717dfdb05680";
+
+fetch (baseURL)
+.then(function (response){
+    return response.json();
+
+})
+.then(function (data){
+    var weatherData = data.list; 
+    for (i=0; i < 5; i++){ 
+        var weatherType = weatherData[i].weather[0].main;
+        var weatherTemp = weatherData[i].main.temp; 
+        var weatherIcon = weatherData[i].weather[0].icon;
+        var weatherWindSpeed = weatherData[i].wind.speed;
+        
+        console.log(weatherData);
+   
+        console.log("Temp: " +weatherTemp);
+    
+        console.log("Weather: " +weatherType);
+    
+        console.log("icon: " +weatherIcon);
+    
+        console.log("Wind Speed: " +weatherWindSpeed);
+    }
+})
