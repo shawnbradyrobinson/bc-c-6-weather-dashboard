@@ -68,29 +68,92 @@ function renderMainWeatherData(date, icon, temp, wind, humidity){
 // === TEMPORARY NON-DYNAMIC  QUERY SELECTORS === 
 
 // === FETCHING BASE API OBJECT === 
-var baseURL = "https://api.openweathermap.org/data/2.5/forecast?lat=39.0997&lon=94.5786&units=imperial&appid=5277d07a84c698de9976717dfdb05680";
+// var baseURL = "https://api.openweathermap.org/data/2.5/forecast?lat=39.0997&lon=94.5786&units=imperial&appid=5277d07a84c698de9976717dfdb05680";
 
-fetch (baseURL)
+// fetch (baseURL)
+// .then(function (response){
+//     return response.json();
+
+// })
+// .then(function (data){
+//     var weatherData = data.list; 
+//     for (i=0; i < 5; i++){ 
+//         var weatherType = weatherData[i].weather[0].main;
+//         var weatherTemp = weatherData[i].main.temp; 
+//         var weatherIcon = weatherData[i].weather[0].icon;
+//         var weatherWindSpeed = weatherData[i].wind.speed;
+        
+//         console.log(weatherData);
+   
+//         console.log("Temp: " +weatherTemp);
+    
+//         console.log("Weather: " +weatherType);
+    
+//         console.log("icon: " +weatherIcon);
+    
+//         console.log("Wind Speed: " +weatherWindSpeed);
+//     }
+// })
+
+// === GEO CODING FETCH === 
+var searchedURL = "http://api.openweathermap.org/geo/1.0/direct?q=houston&limit=5&appid=5277d07a84c698de9976717dfdb05680";
+
+fetch (searchedURL)
 .then(function (response){
+
+return response.json();
+
+
+})
+.then (function (data){
+var searchedName = data[0].name; 
+var searchedState = data[0].state; 
+var searchedLat = data[0].lat; 
+var searchedLon = data[0].lon; 
+
+console.log(data[0]);
+console.log("Name: " +data[0].name);
+console.log("State: " +data[0].state);
+console.log("Latitude: " +data[0].lat);
+console.log("Longitude: " +data[0].lon);
+
+fetchSearchedWeather(searchedName, searchedState, searchedLat, searchedLon);
+
+
+
+})
+
+function fetchSearchedWeather(searchedName, searchedState, searchedLat, searchedLon){
+    var geoURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" +searchedLat+ "&lon=" +searchedLon+ "&units=imperial&appid=5277d07a84c698de9976717dfdb05680"
+
+    fetch (geoURL)
+    .then(function (response){
     return response.json();
 
-})
-.then(function (data){
-    var weatherData = data.list; 
-    for (i=0; i < 5; i++){ 
-        var weatherType = weatherData[i].weather[0].main;
-        var weatherTemp = weatherData[i].main.temp; 
-        var weatherIcon = weatherData[i].weather[0].icon;
-        var weatherWindSpeed = weatherData[i].wind.speed;
-        
-        console.log(weatherData);
+    })
+    .then(function (data){
+        var weatherData = data.list; 
+        for (i=0; i < weatherData.length; i++){ 
+            var weatherType = weatherData[i].weather[0].main;
+            var weatherTemp = weatherData[i].main.temp; 
+            var weatherIcon = weatherData[i].weather[0].icon;
+            var weatherWindSpeed = weatherData[i].wind.speed;
+            var weatherUnix = weatherData[i].dt; 
+            var weatherDayJS = dayjs.unix(weatherUnix);
+            console.log(weatherData);
+
+            console.log("unix: " +weatherUnix);
+            console.log("time: " +weatherDayJS.format("MMM D, YYYY  | hh:mm:ss A"));
    
-        console.log("Temp: " +weatherTemp);
+            console.log("Temp in " +searchedName+ ": " +weatherTemp);
     
-        console.log("Weather: " +weatherType);
+            console.log("Weather in " +searchedName+ ": " +weatherType);
     
-        console.log("icon: " +weatherIcon);
+            console.log("icon in " +searchedName+ ": " +weatherIcon);
     
-        console.log("Wind Speed: " +weatherWindSpeed);
+            console.log("Wind Speed in " +searchedName+ ": " +weatherWindSpeed);
     }
 })
+    
+}
+
