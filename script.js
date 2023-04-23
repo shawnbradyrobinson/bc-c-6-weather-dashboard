@@ -64,9 +64,18 @@ function renderMainWeatherData(date, icon, temp, wind, humidity){
 
 */
 // === SEARCH QUERY SELECTORS === 
+var searchCard = document.querySelector("#search-card");
 var searchField = document.querySelector("#search-field");
 var searchButton = document.querySelector("#button-addon2");
+var clickCount = 0; 
 
+// === LOCAL STORAGE VARIABLES === 
+var savedSearch1 = localStorage.getItem("SEARCH_1");
+var savedSearch2 = localStorage.getItem("SEARCH_2")
+var savedSearch3 = localStorage.getItem("SEARCH_3"); 
+var savedSearch4 = localStorage.getItem("SEARCH_4");
+var savedSearch5 = localStorage.getItem("SEARCH_5");
+var searchCount = 0; 
 
 // === TEMPORARY NON-DYNAMIC  QUERY SELECTORS === 
 // --- CURRENT WEATHER OBJECTS ---
@@ -108,13 +117,20 @@ var textDayThree = document.querySelector("#text-three");
 var textDayFour = document.querySelector("#text-four");
 var textDayFive = document.querySelector("#text-five");
 
-textDayOne.textContent = "Testing";
-// === GEO CODING FETCH === 
+var elementsCreated = false; 
 
 searchButton.addEventListener("click", function(){
 if (searchField.value === ""){
     return; 
 }
+//Keeps track of whether or not they've searched
+//for something yet or not
+clickCount++; 
+
+if (clickCount > 2){
+    refreshCurrentWeatherRenders();
+}
+
 console.log("hi");
 
 var searchValue = searchField.value; 
@@ -196,7 +212,44 @@ function fetchSearchedWeather(searchedName, searchedState, searchedLat, searched
         
         // === CURRENT WEATHER RENDER === 
         currentWeatherTitle.textContent = searchedName; 
+        // --- BUTTON GETS RENDERED --- 
+        renderSearchHistory(searchedName);
+
+        // --- LOCAL STORAGE --- 
+        if (searchCount === 5){
+            savedSearch1 = localStorage.setItem("SEARCH_1", searchedName);
+            searchCount = 1; 
+            return; 
+        }
         
+        if (searchCount === 4){
+            savedSearch5 = localStorage.setItem("SEARCH_5", searchedName);
+            searchCount++; 
+           }
+       if (searchCount === 3){
+        savedSearch4 = localStorage.setItem("SEARCH_4", searchedName);
+        searchCount++; 
+       }
+
+       if (searchCount === 2){
+        savedSearch3 = localStorage.setItem("SEARCH_3", searchedName);
+        searchCount++; 
+       }
+
+       if (searchCount === 1){
+        savedSearch2 = localStorage.setItem("SEARCH_2", searchedName);
+        searchCount++; 
+       }
+
+
+        if(searchCount === 0){
+        savedSearch1 = localStorage.setItem("SEARCH_1", searchedName);
+        searchCount++; 
+       }
+
+
+
+
         
         var displayCurrentTemp = document.createElement("h2");
         currentWeatherCard.append(displayCurrentTemp);
@@ -376,3 +429,64 @@ function renderFiveDayForecast(){
 
 }
 
+function renderSearchHistory(searchedCity){
+var cityButton = document.createElement("button");
+cityButton.setAttribute("class", "btn btn-primary btn-lg");
+cityButton.textContent = searchedCity; 
+searchCard.append(cityButton); 
+return searchedCity;
+//function saveSearches(searchedCity);
+
+}
+
+
+function saveSearches(search){
+
+}
+
+function persistSearches(){
+
+}
+
+function refreshCurrentWeatherRenders(){
+
+displayCurrentTemp.textContent = "";
+displayCurrentWindSpeed.textContent = "";
+displayCurrentType.textContent = "";
+displayCurrentIcon.setAttribute("src", "");
+currentWeatherTitle.textContent = "";
+
+}
+
+function refreshFiveDayForecastRenders(){
+
+}
+
+function renderCurrentWeather(){
+    if (elementsCreated !== true){
+        var displayCurrentTemp = document.createElement("h2");
+        currentWeatherCard.append(displayCurrentTemp);
+        displayCurrentTemp.textContent = "Temperature: " +currentTemp; 
+       
+        var displayCurrentWindSpeed = document.createElement("h2");
+        currentWeatherCard.append(displayCurrentWindSpeed);
+        displayCurrentWindSpeed.textContent = "Wind Speed: " +currentWindSpeed+ " MPH"; 
+        
+        var displayCurrentType = document.createElement("h2");
+        currentWeatherCard.append(displayCurrentType);
+        displayCurrentType.textContent = "Currently: " +currentType;
+        
+        var displayCurrentIcon = document.createElement("img");
+        displayCurrentIcon.setAttribute("class", "d-inline-block align-text-top");
+        displayCurrentIcon.setAttribute("width", "75");
+        displayCurrentIcon.setAttribute("height", "75");
+        displayCurrentIcon.setAttribute("src", "https://openweathermap.org/img/wn/" +currentIcon+ ".png");
+        currentWeatherCard.append(displayCurrentIcon);
+
+        elementsCreated = true; 
+    } 
+
+
+
+
+}
