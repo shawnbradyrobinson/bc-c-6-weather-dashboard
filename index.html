@@ -27,79 +27,80 @@
   </div>
 </nav>
 
+<div class="animation-area">
 
-    <!--SEARCH AND SEARCH HISTORY -->>
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <!--SEARCH BAR-->
-        <div class="input-group mb-3">
-          <input type="text" id="search-field" class="form-control" placeholder="Enter a city name" aria-label="Recipient's username" aria-describedby="button-addon2">
-          <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
-        </div>
-        <!-- END OF SEARCH BAR-->
-        <!-- SEARCH HISTORY-->
-        <div class>
-          <button type="button" class="btn btn-primary btn-lg">Large button</button>
-          <button type="button" class="btn btn-primary btn-lg">Large button</button>
-         
-          <button type="button" class="btn btn-primary btn-lg">Large button</button>
-  
-          <button type="button" class="btn btn-primary btn-lg">Large button</button>  
-        </div>
-      </div>
-    </div>
-  <!-- WIREFRAME MAIN WEATHER DATA-->
+  <!--SEARCH AND SEARCH HISTORY -->>
   <div class="card" style="width: 18rem;">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <div class="card-body bg-warning-subtle">
+      <!--SEARCH BAR-->
+      <div class="input-group mb-3">
+        <input type="text" id="search-field" class="form-control" placeholder="Enter a city name" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <button class="btn btn-outline-secondary bg-primary-subtle" type="button" id="button-addon2">Search</button>
       </div>
-    </div>
-    <div>BREAK</div>
+      <!-- END OF SEARCH BAR-->
+      <!-- SEARCH HISTORY-->
+      <div class>
+        <button type="button" class="btn btn-primary btn-lg">Large button</button>
+        <button type="button" class="btn btn-primary btn-lg">Large button</button>
+       
+        <button type="button" class="btn btn-primary btn-lg">Large button</button>
 
-    <!-- WIREFRAME 5 DAY FORECAST -->
-    <div class="d-flex">
-      <div class="card" id="forecast-card-1" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title" id="title-day-one">Day One</h5>
-          <h6 class="card-subtitle mb-2 text-body-secondary" id="subtitle-1">Card subtitle</h6>
-          <p class="card-text" id="text-one"></p>
-        </div>
-      </div>
-  
-      <div class="card" id="forecast-card-2" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title" id="title-day-two">Day Two</h5>
-          <h6 class="card-subtitle mb-2 text-body-secondary" id="subtitle-2">Card subtitle</h6>
-          <p class="card-text" id="text-two"></p>
-        </div>
-      </div>
-    
-      <div class="card" id="forecast-card-3"style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title" id="title-day-three">Day Three</h5>
-          <h6 class="card-subtitle mb-2 text-body-secondary" id="subtitle-3">Card subtitle</h6>
-          <p class="card-text" id="text-three"></p>
-        </div>
-      </div>
-  
-      <div class="card" id="forecast-card-4" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title" id="title-day-four">Day Four</h5>
-          <h6 class="card-subtitle mb-2 text-body-secondary" id="subtitle-4">Card subtitle</h6>
-          <p class="card-text" id="text-four"></p>
-        </div>
-      </div>
-  
-      <div class="card" id="forecast-card-5" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title" id="title-day-five">Day Five</h5>
-          <h6 class="card-subtitle mb-2 text-body-secondary" id="subtitle-5">Card subtitle</h6>
-          <p class="card-text" id="text-five"></p>
-        </div>
+        <button type="button" class="btn btn-primary btn-lg ">Large button</button>  
       </div>
     </div>
+  </div>
+<!-- WIREFRAME MAIN WEATHER DATA-->
+<div class="card bg-danger-subtle" style="width: 100%;" id="current-weather-card">
+    <div class="card-body">
+      <h1 class="card-title" id="current-weather-title"></h5>
+      <p class="card-text" id="current-weather-text"></p>
+    </div>
+  </div>
+
+  <!-- WIREFRAME 5 DAY FORECAST -->
+  <div class="d-flex">
+    <div class="card" id="forecast-card-1" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title" id="title-day-one">Day One</h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary" id="subtitle-1">Card subtitle</h6>
+        <p class="card-text" id="text-one"></p>
+      </div>
+    </div>
+
+    <div class="card" id="forecast-card-2" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title" id="title-day-two">Day Two</h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary" id="subtitle-2">Card subtitle</h6>
+        <p class="card-text" id="text-two"></p>
+      </div>
+    </div>
+  
+    <div class="card" id="forecast-card-3"style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title" id="title-day-three">Day Three</h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary" id="subtitle-3">Card subtitle</h6>
+        <p class="card-text" id="text-three"></p>
+      </div>
+    </div>
+
+    <div class="card" id="forecast-card-4" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title" id="title-day-four">Day Four</h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary" id="subtitle-4">Card subtitle</h6>
+        <p class="card-text" id="text-four"></p>
+      </div>
+    </div>
+
+    <div class="card" id="forecast-card-5" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title" id="title-day-five">Day Five</h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary" id="subtitle-5">Card subtitle</h6>
+        <p class="card-text" id="text-five"></p>
+      </div>
+    </div>
+  </div>
+</div>
+    
     
 
     <script src="./script.js"></script>
