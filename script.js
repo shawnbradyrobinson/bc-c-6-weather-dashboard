@@ -69,7 +69,14 @@ var searchButton = document.querySelector("#button-addon2");
 
 
 // === TEMPORARY NON-DYNAMIC  QUERY SELECTORS === 
-// --- CARD OBJECTS --- 
+// --- CURRENT WEATHER OBJECTS ---
+var currentWeatherCard = document.querySelector("#current-weather-card");
+var currentWeatherTitle = document.querySelector("#current-weather-title");
+var currentWeatherText = document.querySelector("#current-weather-text");
+var currentWeatherIcon = document.querySelector("#current-weather-icon");
+
+
+// --- FIVE DAY FORECAST CARD OBJECTS --- 
 var forecastCard1 = document.querySelector("#forecast-card-1");
 
 var forecastCard2 = document.querySelector("#forecast-card-2");
@@ -167,8 +174,51 @@ fetchSearchedWeather(searchedName, searchedState, searchedLat, searchedLon);
 
 })
 
-// === WEATHER DATA FETCH === 
+// === CURRENT WEATHER DATA FETCH === 
 function fetchSearchedWeather(searchedName, searchedState, searchedLat, searchedLon){
+    var currentURL = "https://api.openweathermap.org/data/2.5/weather?lat="+searchedLat+"&lon="+searchedLon+"&units=imperial&appid=5277d07a84c698de9976717dfdb05680"
+
+    fetch (currentURL)
+    .then (function (response){
+        return response.json();
+    })
+    .then (function (data){
+        var currentTemp = data.main.temp; 
+        var currentWindSpeed = data.wind.speed;
+        var currentTime = dayjs.unix(data.dt);
+        var currentType = data.weather[0].description;
+        var currentIcon = data.weather[0].icon; 
+        console.log(data);
+        console.log("Current Time: " +currentTime.format("MMM D, YYYY | hh:mm:ss A"));
+        console.log(currentTemp);
+        console.log(currentWindSpeed);
+        console.log(currentType);
+        
+        // === CURRENT WEATHER RENDER === 
+        currentWeatherTitle.textContent = searchedName; 
+        
+        
+        var displayCurrentTemp = document.createElement("h2");
+        currentWeatherCard.append(displayCurrentTemp);
+        displayCurrentTemp.textContent = "Temperature: " +currentTemp; 
+        var displayCurrentWindSpeed = document.createElement("h2");
+        currentWeatherCard.append(displayCurrentWindSpeed);
+        displayCurrentWindSpeed.textContent = "Wind Speed: " +currentWindSpeed+ " MPH"; 
+        var displayCurrentType = document.createElement("h2");
+        currentWeatherCard.append(displayCurrentType);
+        displayCurrentType.textContent = "Currently: " +currentType;
+        var displayCurrentIcon = document.createElement("img");
+        displayCurrentIcon.setAttribute("class", "d-inline-block align-text-top");
+        displayCurrentIcon.setAttribute("width", "75");
+        displayCurrentIcon.setAttribute("height", "75");
+        displayCurrentIcon.setAttribute("src", "https://openweathermap.org/img/wn/" +currentIcon+ ".png");
+        currentWeatherCard.append(displayCurrentIcon);
+    })
+
+
+
+    
+    //=== FIVE DAY FORECAST FETCH === 
     var geoURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" +searchedLat+ "&lon=" +searchedLon+ "&units=imperial&appid=5277d07a84c698de9976717dfdb05680"
 
     fetch (geoURL)
