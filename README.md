@@ -7,9 +7,9 @@ https://shawnbradyrobinson.github.io/bc-c-6-weather-dashboard/
 
 Try out the weather dashboard application! A website that receives weather searches, persists those searches, and displays both current weather data as well as a five day forecast dynamically!
 
-![A screenshot of the weather dashboard](./images/challenge-6-1.png)
+![A screenshot of the weather dashboard](./images/challenge-6-1.jpg)
 
-![A screenshot of the weather dashboard](./images/challenge-6-2.png)
+![A screenshot of the weather dashboard](./images/challenge-6-2.jpg)
 
 # Credit 
 This site utilizes the OpenWeatherAPI and DayJS API
