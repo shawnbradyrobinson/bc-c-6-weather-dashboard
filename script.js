@@ -263,16 +263,47 @@ function renderSearchHistory(searchedCity){
 var cityButton = document.createElement("button");
 cityButton.setAttribute("class", "btn btn-primary btn-lg");
 cityButton.textContent = searchedCity; 
-searchCard.append(cityButton); 
+searchCard.append(cityButton);
+createButtonListener(cityButton);
 return searchedCity;
 //function saveSearches(searchedCity);
 
 }
 
+function createButtonListener(cityButton){
+    cityButton.addEventListener("click", function(){
+    
+        var searchValue = cityButton.value; 
 
-function saveSearches(search){
+        var searchedURL = "http://api.openweathermap.org/geo/1.0/direct?q=" +searchValue+ "&limit=5&appid=5277d07a84c698de9976717dfdb05680";
+
+        fetch (searchedURL)
+        .then(function (response){
+
+        return response.json();
+
+
+        })
+        .then (function (data){
+        var searchedName = data[0].name; 
+        var searchedState = data[0].state; 
+        var searchedLat = data[0].lat; 
+        var searchedLon = data[0].lon; 
+
+        console.log(data[0]);
+        console.log("Name: " +data[0].name);
+        console.log("State: " +data[0].state);
+        console.log("Latitude: " +data[0].lat);
+        console.log("Longitude: " +data[0].lon);
+
+        fetchSearchedWeather(searchedName, searchedState, searchedLat, searchedLon);
+
+    })
+})
 
 }
+
+
 
 function persistSearches(){
     if (savedSearch1 === "false" && search2Filled === "false" && search3Filled === "false" && search4Filled === "false" && search5Filled === "false"){
@@ -454,7 +485,13 @@ function renderFiveDayForecast(weatherType1, weatherType2, weatherType3, weather
         fiveDayForecastElementsCreated = true; 
         return; 
     }
-    
+    displayCurrentTemp.textContent = "";
+    displayCurrentWindSpeed.textContent = "";
+    displayCurrentType.textContent = "";
+    displayCurrentIcon.setAttribute("src", "");
+    currentWeatherTitle.textContent = "";
+
+
     textDayOne.textContent = weatherType1;
     textDayTwo.textContent = weatherType2; 
     textDayThree.textContent = weatherType3;
