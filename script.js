@@ -309,11 +309,6 @@ function persistSearches(){
         searchCard.append(cityButton); 
     }
 
-
-
-
-
-
 }
 
 function refreshCurrentWeatherRenders(){
@@ -331,21 +326,23 @@ function refreshFiveDayForecastRenders(){
 }
 
 function renderCurrentWeather(searchedName, currentTemp, currentWindSpeed, currentType, currentIcon){
+    var displayCurrentTemp = document.createElement("h2");
+    var displayCurrentWindSpeed = document.createElement("h2");
+    var displayCurrentType = document.createElement("h2");
+    var displayCurrentIcon = document.createElement("img");
+    
+    
     if (currentWeatherElementsCreated !== true){
         currentWeatherTitle.textContent = searchedName; 
-        var displayCurrentTemp = document.createElement("h2");
         currentWeatherCard.append(displayCurrentTemp);
         displayCurrentTemp.textContent = "Temperature: " +currentTemp; 
        
-        var displayCurrentWindSpeed = document.createElement("h2");
         currentWeatherCard.append(displayCurrentWindSpeed);
         displayCurrentWindSpeed.textContent = "Wind Speed: " +currentWindSpeed+ " MPH"; 
         
-        var displayCurrentType = document.createElement("h2");
         currentWeatherCard.append(displayCurrentType);
         displayCurrentType.textContent = "Currently: " +currentType;
         
-        var displayCurrentIcon = document.createElement("img");
         displayCurrentIcon.setAttribute("class", "d-inline-block align-text-top");
         displayCurrentIcon.setAttribute("width", "75");
         displayCurrentIcon.setAttribute("height", "75");
@@ -356,7 +353,7 @@ function renderCurrentWeather(searchedName, currentTemp, currentWindSpeed, curre
     } 
     currentWeatherTitle.textContent = searchedName; 
     currentWeatherCard.append(displayCurrentTemp);
-    displayCurrentTemp.textContent = "Temperature: " +currentTemp; 
+    displayCurrentTemp.textContent = "Temperature: " +currentTemp; //ERROR LINE
    
     currentWeatherCard.append(displayCurrentWindSpeed);
     displayCurrentWindSpeed.textContent = "Wind Speed: " +currentWindSpeed+ " MPH"; 
@@ -373,6 +370,23 @@ function renderCurrentWeather(searchedName, currentTemp, currentWindSpeed, curre
 }
 
 function renderFiveDayForecast(weatherType1, weatherType2, weatherType3, weatherType4, weatherType5, searchedName, weatherTemp1, weatherTemp2, weatherTemp3, weatherTemp4, weatherTemp5, weatherWindSpeed1, weatherWindSpeed2, weatherWindSpeed3, weatherWindSpeed4, weatherWindSpeed5, weatherIcon1, weatherIcon2, weatherIcon3, weatherIcon4, weatherIcon5){
+    
+    var displayTemp1 = document.createElement("p");
+    var displayWind1 = document.createElement("p");
+    var displayIcon1 = document.createElement("img");
+    var displayTemp2 = document.createElement("p");
+    var displayWind2 = document.createElement("p");
+    var displayIcon2 = document.createElement("img");
+    var displayTemp3 = document.createElement("p");
+    var displayWind3 = document.createElement("p");
+    var displayIcon3 = document.createElement("img");
+    var displayTemp4 = document.createElement("p");
+    var displayWind4 = document.createElement("p");
+    var displayIcon4 = document.createElement("img");
+    var displayTemp5 = document.createElement("p");
+    var displayWind5 = document.createElement("p");
+    var displayIcon5 = document.createElement("img");
+    
 
     if(fiveDayForecastElementsCreated !== true){
         textDayOne.textContent = weatherType1;
@@ -388,67 +402,52 @@ function renderFiveDayForecast(weatherType1, weatherType2, weatherType3, weather
         subtitleDayFive.textContent = searchedName;
     
         //DISPLAY 1 
-        var displayTemp1 = document.createElement("p");
         displayTemp1.setAttribute("class", "card-text");
         forecastCard1.append(displayTemp1);
         displayTemp1.textContent = "Temp: " +weatherTemp1;
-        var displayWind1 = document.createElement("p");
         displayWind1.setAttribute("class", "card-text");
         forecastCard1.append(displayWind1);
         displayWind1.textContent = "Wind Speed: " +weatherWindSpeed1+ " MPH";
-        var displayIcon1 = document.createElement("img");
         displayIcon1.setAttribute("src", "https://openweathermap.org/img/wn/" +weatherIcon1+ "@2x.png");
         forecastCard1.append(displayIcon1);
     
         //DISPLAY 2 
-        var displayTemp2 = document.createElement("p");
         displayTemp2.setAttribute("class", "card-text");
         forecastCard2.append(displayTemp2);
         displayTemp2.textContent = "Temp: " +weatherTemp2;
-        var displayWind2 = document.createElement("p");
         displayWind2.setAttribute("class", "card-text");
         forecastCard2.append(displayWind2);
         displayWind2.textContent = "Wind Speed: " +weatherWindSpeed2+ " MPH";
-        var displayIcon2 = document.createElement("img");
         displayIcon2.setAttribute("src", "https://openweathermap.org/img/wn/" +weatherIcon2+ "@2x.png");
         forecastCard2.append(displayIcon2);
     
         //DISPLAY 3 
-        var displayTemp3 = document.createElement("p");
         displayTemp3.setAttribute("class", "card-text");
         forecastCard3.append(displayTemp3);
         displayTemp3.textContent = "Temp: " +weatherTemp3;
-        var displayWind3 = document.createElement("p");
         displayWind3.setAttribute("class", "card-text");
         forecastCard3.append(displayWind3);
         displayWind3.textContent = "Wind Speed: " +weatherWindSpeed3+ " MPH";
-        var displayIcon3 = document.createElement("img");
         displayIcon3.setAttribute("src", "https://openweathermap.org/img/wn/" +weatherIcon3+ "@2x.png");
         forecastCard3.append(displayIcon3);
     
         //DISPLAY 4 
-        var displayTemp4 = document.createElement("p");
         displayTemp4.setAttribute("class", "card-text");
         forecastCard4.append(displayTemp4);
         displayTemp4.textContent = "Temp: " +weatherTemp4;
-        var displayWind4 = document.createElement("p");
         displayWind4.setAttribute("class", "card-text");
         forecastCard4.append(displayWind4);
         displayWind4.textContent = "Wind Speed: " +weatherWindSpeed4+ " MPH";
-        var displayIcon4 = document.createElement("img");
         displayIcon4.setAttribute("src", "https://openweathermap.org/img/wn/" +weatherIcon4+ "@2x.png");
         forecastCard4.append(displayIcon4);
     
         //DISPLAY 5
-        var displayTemp5 = document.createElement("p");
         displayTemp5.setAttribute("class", "card-text");
         forecastCard5.append(displayTemp5);
         displayTemp5.textContent = "Temp: " +weatherTemp5;
-        var displayWind5 = document.createElement("p");
         displayWind5.setAttribute("class", "card-text");
         forecastCard5.append(displayWind5);
         displayWind5.textContent = "Wind Speed: " +weatherWindSpeed5+ " MPH";
-        var displayIcon5 = document.createElement("img");
         displayIcon5.setAttribute("src", "https://openweathermap.org/img/wn/" +weatherIcon5+ "@2x.png");
         forecastCard5.append(displayIcon5);
 
@@ -469,7 +468,7 @@ function renderFiveDayForecast(weatherType1, weatherType2, weatherType3, weather
     subtitleDayFive.textContent = searchedName;
 
     //DISPLAY 1 
-    displayTemp1.textContent = "Temp: " +weatherTemp1;
+    displayTemp1.textContent = "Temp: " +weatherTemp1; //ERROR LINE
     displayWind1.textContent = "Wind Speed: " +weatherWindSpeed1+ " MPH";
     displayIcon1.setAttribute("src", "https://openweathermap.org/img/wn/" +weatherIcon1+ "@2x.png");
 
