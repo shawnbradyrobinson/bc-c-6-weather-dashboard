@@ -485,12 +485,6 @@ function renderFiveDayForecast(weatherType1, weatherType2, weatherType3, weather
         fiveDayForecastElementsCreated = true; 
         return; 
     }
-    displayCurrentTemp.textContent = "";
-    displayCurrentWindSpeed.textContent = "";
-    displayCurrentType.textContent = "";
-    displayCurrentIcon.setAttribute("src", "");
-    currentWeatherTitle.textContent = "";
-
 
     textDayOne.textContent = weatherType1;
     textDayTwo.textContent = weatherType2; 
